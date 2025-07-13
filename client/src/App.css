@@ -1,3 +1,8 @@
+*{
+    box-sizing: border-box;
+
+}
+
 body{
   color: #222;
 
@@ -23,6 +28,12 @@ header{
 header a{
   text-decoration: none;
   color:inherit;
+  font-weight: bold;
+
+}
+
+header a:hover{
+    color: #cb102c; /* rosa vibrante */
 
 }
 header a.logo{
@@ -32,7 +43,8 @@ header a.logo{
 
 header nav{
   display: flex;
-  gap: 15px;
+  gap: 30px;
+   font-weight: 700px;
 
 }
 
@@ -67,4 +79,56 @@ div.post div.info a.author{
 div.post p.summary{
   margin:10px 0;
   line-height: 1.6rem;
+}
+
+form.login, form.register{
+  
+  max-width: 400px;
+  margin: 0  auto;
+  box-sizing: border-box;
+
+}
+
+input{
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 15px 10px;
+  background-color: hsl(0, 0%, 95%);
+  border-radius: 2px;
+  border: 0.5px solid #ebebeb;
+}
+button{
+  width: 100%;
+  display: block;
+  padding: 15px;
+  border: none;
+  border-radius: 2px;
+  background-color: #070707;
+  color: white;
+  margin-top: 20px;
+
+}
+
+button:hover{
+  background-color: rgb(122, 122, 122);
+}
+
+form h1{
+  text-align: center;
+  padding-bottom: 20px;
+}
+form p a{
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  color: #cb102c; /* rosa vibrante */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+
+}
+
+form p a:hover{
+  text-decoration: underline;
 }
