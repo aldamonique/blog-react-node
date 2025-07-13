@@ -1,0 +1,47 @@
+body{
+  color: #222;
+
+}
+
+img{
+  max-width: 100%;
+
+}
+.container{
+  background-color: rgb(60, 148, 248);
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  height: 40px;
+  align-items: center;  
+  color: white;
+  background-color: rgb(60, 148, 248);
+    max-width: 500px;
+  margin: 0 auto;
+  padding: 10px;
+
+}
+
+header a{
+  text-decoration: none;
+  color:inherit;
+
+}
+header a.logo{
+  font-weight: bold;
+}
+
+header nav{
+  display: flex;
+  gap: 15px;
+
+}
+
+div.post{
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 500px;
+}
