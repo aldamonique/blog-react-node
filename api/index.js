@@ -31,6 +31,3 @@ app.post('/register', async (req, res) => {
 });
 
 app.listen(4000);
-//5B6V80qNR1X4oQUv
-
-//mongodb+srv://aldamonique2828:5B6V80qNR1X4oQUv@cluster0.vetfepw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
