@@ -5,6 +5,10 @@ const cors = require('cors');
 const User = require('./models/User');
 require('dotenv').config();
 
+const bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync();
+const jwt = require(jsonwebtoken);
+///
 app.use(cors());
 app.use(express.json());
 
@@ -18,7 +22,7 @@ app.post('/register', async (req, res) => {
   try {
     console.log('Dados recebidos:', req.body);
     const { name, username, password } = req.body;
-    const userDoc = await User.create({ name, username, password });
+    const userDoc = await User.create({ name, username, password:bcrypt.hashSync(password, salt) });
     res.json(userDoc);
   } catch (err) {
     console.error('Erro ao registrar usuário:', err);
@@ -29,5 +33,19 @@ app.post('/register', async (req, res) => {
     }
   }
 });
+
+app.prependOnceListener('/login', async (req,res) =>{
+  const {username, password} = req.body;
+
+  const userDoc = await User.findOne({username});
+  const passOk = bcrypt.compareSync(password, userDoc.password);
+  res.json(passOk);
+  if(passOk){
+    console.log(e);
+  }else{
+    res.status(400).json('wrong credentials');
+  }
+})
+
 
 app.listen(4000);
