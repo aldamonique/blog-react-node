@@ -4,37 +4,33 @@ const { error } = require('console');
 const jwt = require('jsonwebtoken');
 
 
-exports.createPost = async (req,res, next) =>{
-    try{
-        let coverPath = null;
-        if(req.file){
-            const {originalname, path} = req.file;
-            const ext = originalname.split('.').pop();
-            coverPath = `${path}.${ext}`;
-            fs.renameSync(path, coverPath);
-        }
-        const {token} = req.cookies;
-        if (!token) return res.status(401).json({error:'Unauthorized'});
-
-        jwt.verify(token, process.env.JWT_SECRET, {}, async (err,info) =>{
-            if (err) return res.status(401).json({error: 'Invalid Token'});
-
-            const {title, summary, content} = req.body;
-
-            const post = await Post.create({
-                title, 
-                summary, 
-                content, 
-                cover:coverPath,
-                author:info.id,
-            });
-            return res.status(201).json(post);
-
-        });
-        
-    }catch(err){
-        next(err);
+exports.createPost = async (req, res, next) => {
+  try {
+    let coverPath = null;
+    if (req.file) {
+      const { originalname, path } = req.file;
+      const ext = originalname.split('.').pop();
+      coverPath = `${path}.${ext}`;
+      fs.renameSync(path, coverPath);
     }
+
+
+    const { id: authorId } = req.user;
+    const { title, summary, content } = req.body;
+
+    const post = await Post.create({
+      title,
+      summary,
+      content,
+      cover: coverPath,
+      author: authorId, 
+    });
+
+    return res.status(201).json(post);
+
+  } catch (err) {
+    next(err);
+  }
 };
 exports.updatePost = async (req, res, next) =>{
     try{
