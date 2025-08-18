@@ -9,14 +9,14 @@ const authRoutes = require('./src/routes/auth.routes');
 const postRoutes = require('./src/routes/post.route');
 
 const app = express();
-app.use(cors({credentials:true, origin: 'htttp://localhost:3000'}));
+app.use(cors({credentials:true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 app.use(cookieParser());
-app.use('/uploads', express.static(__dirname + '/../uploads'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
-app.use('/api/auth', authRoutes);
-app.use('/api/posts', postRoutes);
+app.use('/auth', authRoutes);
+app.use('/posts', postRoutes);
 
 const {MONGO_URI, PORT} = process.env;
 
@@ -30,4 +30,3 @@ mongoose.connect(MONGO_URI)
 
 
 
-app.listen(4000);

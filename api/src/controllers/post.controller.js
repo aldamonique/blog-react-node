@@ -1,6 +1,8 @@
 const fs = require('fs');
 const Post = require('../models/post.model');
 const { error } = require('console');
+const jwt = require('jsonwebtoken');
+
 
 exports.createPost = async (req,res, next) =>{
     try{
@@ -60,12 +62,14 @@ exports.updatePost = async (req, res, next) =>{
 
             if(!isAuthor) return res.status(403).json({error: 'Not authorized to edit this post'});
 
-            post.title = title;
-            post.summary = summary;
-            post.content = content;
-            post.cover = newCoverPath ? newCoverPath : post.cover;
+            if (req.body.title) post.title = title;
+            if (req.body.summary) post.summary = summary;
+            if (req.body.content) post.content = content;
+            if (req.body.cover) post.cover = newCoverPath ? newCoverPath : post.cover;
             
             await post.save();
+            await post.populate('author', 'username name');
+
             return res.json(post);
 
         });
@@ -92,7 +96,7 @@ exports.getPosts = async (req, res, next) =>{
 exports.getPostsById = async (req, res, next) =>{
     try{
         const {id} = req.params;
-        const post = await Post.findById()
+        const post = await Post.findById(id)
         .populate('author', ['username']);
         if(!post) return res.status(404).json({error:'Post not found'});
         return res.json(post);
