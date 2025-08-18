@@ -1,14 +1,36 @@
-### Read Club - Blog Application with MongoDB, Express, React and MongoDB
+## Read Blog – Blog Application
 
-Read Club is a full-stack blog application that I designed and developed from scratch using the MERN Stack: MongoDB, Express.js, React.js and Node.js. This app was driven not only by interest in web development, but also by personal passion for literature. This project is currently in active development.
+Read Blog is a full-stack blog platform I designed and developed from scratch using the MERN Stack: MongoDB, Express.js, React.js, and Node.js. This project was driven not only by my interest in web development but also by my personal passion for literature. It is currently under active development.
 
-Through this app, I was able to deepen my understanding of authentication, protect routes, RESTful API integration, and full-stack architecture, while also combining my love for code and creative writing. 
+With this project, I strengthened my knowledge of:
+
+- User authentication and route protection
+
+- RESTful API design and integration
+
+- Full-stack application architecture
+
+- File uploads and secure data handling
 
 
-#### Main Features
+### Features
 
-📝 Home page displaying blog posts
+📝 Browse blog posts
 
-🔐 User authentication (registration and login)
+🔐 User registration and login
 
-🔒 Secure access to user-restricted features
+🔒 Protected routes for authenticated users
+
+✏️ Create and edit posts with image uploads
+
+### Tech Stack
+
+- Frontend: React.js
+
+- Backend: Node.js, Express.js
+
+- Database: MongoDB (Mongoose)
+
+- Auth: JWT
+
+- File Uploads: Multer
