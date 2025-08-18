@@ -1,51 +1,33 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const app = express();
-const cors = require('cors');
-const User = require('./models/User');
 require('dotenv').config();
 
-const bcrypt = require('bcryptjs');
-const salt = bcrypt.genSaltSync();
-const jwt = require(jsonwebtoken);
-///
-app.use(cors());
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
+const authRoutes = require('./src/routes/auth.routes');
+const postRoutes = require('./src/routes/post.route');
+
+const app = express();
+app.use(cors({credentials:true, origin: 'htttp://localhost:3000'}));
 app.use(express.json());
+app.use(cookieParser());
+app.use('/uploads', express.static(__dirname + '/../uploads'));
 
 
+app.use('/api/auth', authRoutes);
+app.use('/api/posts', postRoutes);
 
-mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log('Conectado ao MongoDB Atlas!'))
-.catch(err => console.error('Erro ao conectar:', err));
+const {MONGO_URI, PORT} = process.env;
 
-app.post('/register', async (req, res) => {
-  try {
-    console.log('Dados recebidos:', req.body);
-    const { name, username, password } = req.body;
-    const userDoc = await User.create({ name, username, password:bcrypt.hashSync(password, salt) });
-    res.json(userDoc);
-  } catch (err) {
-    console.error('Erro ao registrar usuário:', err);
-    if (err.code === 11000) {
-      res.status(400).json({ error: 'Nome ou usuário já existe.' });
-    } else {
-      res.status(500).json({ error: 'Erro interno no servidor.' });
-    }
-  }
-});
 
-app.prependOnceListener('/login', async (req,res) =>{
-  const {username, password} = req.body;
-
-  const userDoc = await User.findOne({username});
-  const passOk = bcrypt.compareSync(password, userDoc.password);
-  res.json(passOk);
-  if(passOk){
-    console.log(e);
-  }else{
-    res.status(400).json('wrong credentials');
-  }
+mongoose.connect(MONGO_URI)
+.then(() => {
+  console.log('Connected to MongoDB');
+  app.listen(PORT || 4000, () => console.log(`Server running on port ${PORT || 4000 }`));
 })
+.catch((err) => console.error('MongoDB connection error:', err));
+
 
 
 app.listen(4000);
