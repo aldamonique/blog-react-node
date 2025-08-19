@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { format } from "date-fns";
-import { UserContext } from "../UserContext";
+import { UserContext } from "../../context/UserContext";
 
 export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
@@ -13,7 +13,6 @@ export default function PostPage() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        // Rota corrigida para '/posts/post/:id'
         const response = await fetch(`http://localhost:4000/posts/post/${id}`);
         if (!response.ok) {
           throw new Error('Post not found.');
@@ -27,7 +26,7 @@ export default function PostPage() {
       }
     };
     fetchPost();
-  }, [id]); // Adicionado `id` como dependência
+  }, [id]); 
 
   if (loading) {
     return <div>Loading...</div>;
@@ -38,7 +37,7 @@ export default function PostPage() {
   }
   
   if (!postInfo) {
-      return null; // ou uma mensagem de erro mais específica
+      return null; 
   }
 
   return (

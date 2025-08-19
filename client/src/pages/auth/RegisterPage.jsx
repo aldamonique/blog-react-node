@@ -14,7 +14,6 @@ export default function RegisterPage() {
     setLoading(true);
     setError('');
 
-    // Rota corrigida para '/auth/register'
     const response = await fetch('http://localhost:4000/auth/register', {
       method: 'POST',
       body: JSON.stringify({ name, username, password }),
@@ -26,7 +25,6 @@ export default function RegisterPage() {
     if (response.ok) {
       setRedirect(true);
     } else {
-      // Exibe o erro específico vindo da API
       setError(data.error || 'Registration failed. Please try again.');
     }
     setLoading(false);

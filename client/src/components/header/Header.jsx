@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
-import { UserContext } from "./UserContext";
+import { UserContext } from "../../context/UserContext";
 
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
@@ -9,7 +9,6 @@ export default function Header() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        // Rota corrigida para '/auth/profile'
         const response = await fetch('http://localhost:4000/auth/profile', {
           credentials: 'include',
         });
@@ -25,13 +24,12 @@ export default function Header() {
   }, [setUserInfo]);
 
   async function logout() {
-    // Rota corrigida para '/auth/logout'
     await fetch('http://localhost:4000/auth/logout', {
       credentials: 'include',
       method: 'POST',
     });
     setUserInfo(null);
-    navigate('/'); // Redireciona para a página inicial
+    navigate('/'); 
   }
 
   const username = userInfo?.username;
