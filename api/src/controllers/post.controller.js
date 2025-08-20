@@ -40,7 +40,7 @@ exports.updatePost = async (req, res, next) =>{
             const{originalname, path} = req.file;
             const ext = originalname.split('.').pop();
             newCoverPath = `${path}.${ext}`;
-            fs.rebameSync(path, newCoverPath);
+            fs.renameSync(path, newCoverPath);
         }
 
         const {token} = req.cookies;

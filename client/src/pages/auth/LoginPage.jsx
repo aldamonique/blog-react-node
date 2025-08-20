@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import './Auth.css'
+import ClassicArt from '../../assets/art-classic.jpg'
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -38,26 +40,37 @@ export default function LoginPage() {
   }
 
   return (
-    <form className="login" onSubmit={login}>
-      <h1>Login</h1>
-      {error && <p className="error">{error}</p>} 
-      <input 
-        type="text"
-        placeholder="username"
-        value={username}
-        onChange={ev => setUsername(ev.target.value)} 
-        disabled={loading}
-      />
-      <input 
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={ev => setPassword(ev.target.value)} 
-        disabled={loading}
-      />
-      <button disabled={loading}>
-        {loading ? 'Logging in...' : 'Login'}
-      </button>
-    </form>
+    <div className="container-group">
+      <div className="container-img">
+        <img src={ClassicArt}></img>
+      </div>
+    
+    <div className="container-form-login">
+      <form className="login" onSubmit={login}>
+        <h1>Login</h1>
+        {error && <p className="error">{error}</p>} 
+        <input 
+          type="text"
+          placeholder="username"
+          value={username}
+          onChange={ev => setUsername(ev.target.value)} 
+          disabled={loading}
+        />
+        <input 
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={ev => setPassword(ev.target.value)} 
+          disabled={loading}
+        />
+        <button disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
+      </form>
+
+    </div>
+    </div>
+
   );
 }
+

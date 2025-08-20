@@ -1,72 +1,21 @@
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  height: 100vh;
-  display: flex;
+
+.container-group{
+  background-color: rgb(247, 228, 204);
+    display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-form.login {
-  background: #fff;
-  padding: 40px 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  width: 100%;
-  max-width: 380px;
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-form.login h1 {
   margin-bottom: 20px;
-  font-size: 2rem;
-  color: #333;
-  text-align: center;
+  width:100%;
+
 }
 
-form.login input {
-  width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 15px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: 0.3s;
+.container-form-login{
+  width: 800px;
+  padding: 50px;
 }
 
-form.login input:focus {
-  border-color: #667eea;
-  outline: none;
-  box-shadow: 0 0 8px rgba(102,126,234,0.4);
-}
-
-form.login button {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-form.login button:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-form.login .error {
-  color: #e74c3c;
-  font-size: 0.9rem;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-/* Animação de entrada */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to   { opacity: 1; transform: translateY(0); }
+input{
+    padding: 10px 20px;
+  margin: 10px 0;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
 }
