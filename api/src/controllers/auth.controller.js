@@ -30,7 +30,7 @@ exports.login = async(req, res, next) =>{
         if(!user) return res.status(401).json({error:'Username not found'});
         const passOk = await bcrypt.compare(password, user.password);
         if(!passOk) return res.status(401).json({error:'Invalid Credentials'});
-        const token = jwt.sign({id:user.id, username:user.username}, process.env.JWT_SECRET, {expiresIn:'2d'});
+        const token = jwt.sign({id:user.id, name:user.name, username:user.username}, process.env.JWT_SECRET, {expiresIn:'2d'});
         res.cookie('token', token, {httpOnly:true, secure:false, sameSite:"lax"}).json(user);
     }catch(err){
         next(err);

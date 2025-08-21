@@ -16,7 +16,6 @@ export default function EditPost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        // Rota corrigida para '/posts/post/:id'
         const response = await fetch(`http://localhost:4000/posts/post/${id}`);
         if (!response.ok) {
           throw new Error('Post not found or failed to fetch.');
@@ -32,7 +31,7 @@ export default function EditPost() {
       }
     };
     fetchPost();
-  }, [id]); // Adicionado `id` como dependência
+  }, [id]); 
 
   async function updatePost(ev) {
     ev.preventDefault();
@@ -47,7 +46,6 @@ export default function EditPost() {
       data.set('file', files[0]);
     }
 
-    // Rota corrigida para o método PUT
     const response = await fetch(`http://localhost:4000/posts/post/${id}`, {
       method: 'PUT',
       body: data,
@@ -67,7 +65,7 @@ export default function EditPost() {
     return <Navigate to={`/post/${id}`} />;
   }
   
-  if (loading && !title) { // Show loading only on initial fetch
+  if (loading && !title) { 
       return <div>Loading post...</div>;
   }
 
@@ -75,14 +73,14 @@ export default function EditPost() {
     <form onSubmit={updatePost}>
       {error && <p className="error">{error}</p>}
       <input 
-        type="text" // Corrigido de "title" para "text"
+        type="text" 
         placeholder={'Title'}
         value={title}
         onChange={ev => setTitle(ev.target.value)}
         disabled={loading}
       />
       <input 
-        type="text" // Corrigido de "summary" para "text"
+        type="text" 
         placeholder={'Summary'}
         value={summary}
         onChange={ev => setSummary(ev.target.value)}
