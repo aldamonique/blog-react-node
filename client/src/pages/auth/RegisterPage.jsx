@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import AuthLayout from "./AuthLayout.jsx";
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
@@ -35,8 +36,9 @@ export default function RegisterPage() {
   }
 
   return (
-    <form className="register" onSubmit={register}>
-      <h1>Register</h1>
+  <AuthLayout title="Sing up Blog Art" subtitle="Think. Write. Read">
+    
+    <form onSubmit={register}>
       {error && <p className="error">{error}</p>}
       <input 
         type="text"
@@ -63,5 +65,6 @@ export default function RegisterPage() {
         {loading ? 'Registering...' : 'Register'}
       </button>
     </form>
+  </AuthLayout>
   );
 }

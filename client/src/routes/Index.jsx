@@ -15,10 +15,11 @@ function AppRoutes (){
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route index element={<IndexPage />} />
+
         
         <Route element={<ProtectedRoute/>}>
           <Route path="/" element={<Layout />}>
-            <Route index element={<IndexPage />} />
 
             <Route path="/create" element={<CreatePost />} />
             <Route path="/post/:id" element={<PostPage />} />

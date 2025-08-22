@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import "./Auth.css";
-import ClassicArt from "../../assets/art-classic.jpg";
+import "./Auth.css"; 
+import AuthLayout from "./AuthLayout.jsx";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -40,17 +40,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="auth-page">
-      <div className="login-card-classic">
-        <div className="img-panel">
-          <img
-            src={ClassicArt}
-            alt="A classic painting of angels flying among clouds on an ornate ceiling"
-          ></img>
-        </div>
-        <div className="form-panel">
-            <form className="login-form" onSubmit={login}>
-              <h1>Login Blog Art</h1>
+    <AuthLayout title="Login Blog Art" subtitle="Think. Write. Read">
+            <form  onSubmit={login}>
               {error && <p className="error-message">{error}</p>}
               <input
                 type="text"
@@ -72,8 +63,7 @@ export default function LoginPage() {
               <span className="span-form">Don't have an anccount?&nbsp;<Link className="link-form" to="/register">Sing up now</Link></span>
 
             </form>
-          </div>
-      </div>
-    </div>
+      </AuthLayout>
+
   );
 }
