@@ -147,3 +147,9 @@ div.post-page a.edit-btn{
 a svg{
     height:20px;
 }
+
+.custom-bg{
+    background-image: url('assets/art-classic.jpg');
+    background-size: cover;
+
+}

@@ -6,26 +6,34 @@ import RegisterPage from '../pages/auth/RegisterPage.jsx';
 import CreatePost from "../pages/posts/CreatePost";
 import PostPage from "../pages/posts/PostPage";
 import EditPost from "../pages/posts/EditPost.jsx";
+import RestrictedRoute from "./RestrictedRoute.jsx";
 
 import ProtectedRoute from './ProtectedRoute.jsx';
+import NotFound from "../pages/not-found-page/NotFoundPage.jsx";
 
 function AppRoutes (){
     return(
         <Routes>
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route index element={<IndexPage />} />
+        <Route element={<RestrictedRoute/>}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Route>
 
-        
-        <Route element={<ProtectedRoute/>}>
-          <Route path="/" element={<Layout />}>
-
+        <Route element={<Layout />}>
+          <Route index element={<IndexPage />} />
+          <Route path="/post/:id" element={<PostPage />}  />
+          
+          <Route element={<ProtectedRoute/>}>
             <Route path="/create" element={<CreatePost />} />
-            <Route path="/post/:id" element={<PostPage />} />
             <Route path="/edit/:id" element={<EditPost />} />
           </Route>
+          
         </Route>
+
+
+        <Route path="*" element={<NotFound/>}/>
+
         
       </Routes>
     )
