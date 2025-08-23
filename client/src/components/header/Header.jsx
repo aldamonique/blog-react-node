@@ -21,7 +21,14 @@ export default function Header() {
 
   return (
     <header>
+      <div className="header-placeholder">
+        <i class="bi bi-search"></i>
+        <i class="bi bi-bell-fill"></i>
+        <i class="bi bi-plus-lg"></i>
+      </div>
       <Link to="/" className="logo">Red Art Blog</Link>
+
+
       <nav>
         {username && (
           <>
@@ -35,8 +42,12 @@ export default function Header() {
         )}
         {!username && (
           <>
-            <Link to="/login"><button>Login</button></Link>
-            <Link to="/register"><button>Register</button></Link>
+
+          <div className="navbar-non-user">
+            <Link to="/login"><button className="login-button"><i className=" person bi bi-person"/>&nbsp;&nbsp;Login</button></Link>
+            <Link to="/register"><button className="singup-button">Register</button></Link>
+          </div>
+            
           </>
         )}
       </nav>

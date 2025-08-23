@@ -1,23 +1,68 @@
 header{
     display:flex;
     justify-content:space-between;
+    align-items: center;
     margin-bottom: 50px;
-    padding: 10px;
-    background-color: rgb(240, 240, 240);;
+    padding: 15px;
+    background-color: whitesmoke;
+    border-bottom: 1px solid #e2e2e2;
+
+
 }
 header a{
     text-decoration:none;
     color: inherit;
 }
 header a.logo{
+
     font-weight: bold;
     font-size: 1.5rem;
-    color: rgb(117, 3, 3);
+    color: rgb(0, 0, 0);
+    text-align: center;
 }
 header nav{
     display:flex;
     gap: 24px;
+    justify-content: flex-end;
+
 }
+header nav, .header-placeholder{
+    flex:1;
+}
+
+.header-placeholder i{
+    margin-left: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.navbar-non-user{
+    display: flex;
+    gap: 10px;
+
+}
+.navbar-non-user button{
+    padding: 10px 30px;
+    border-width: 1.5px;
+    border-style: solid;
+    border-radius: 3px;
+}
+
+.login-button, .singup-button:hover{
+    background-color: white;
+    color: black;   
+}
+
+.login-button i{
+    font-size: 15px;
+}
+
+.singup-button, .login-button:hover{
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
 
 
 .container-profile{
