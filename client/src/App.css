@@ -15,7 +15,14 @@ main{
     max-width: 960px;
     margin: 0 auto;
 }
-
+.container-base{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main{
+    flex-grow: 1;
+}
 
 div.post{
     display: grid;

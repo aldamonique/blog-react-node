@@ -21,23 +21,33 @@ export default function Header() {
 
   return (
     <header>
-      <div className="header-placeholder">
-        <i class="bi bi-search"></i>
-        <i class="bi bi-bell-fill"></i>
-        <i class="bi bi-plus-lg"></i>
-      </div>
+     <div className="header-placeholder">
+      <i className="bi bi-search"></i>
+      <i className="bi bi-bell-fill"></i>
+      {username ? (
+        <Link to="/create">
+          <i className="bi bi-plus-lg"></i>
+        </Link>
+      ) : (
+        <Link to="/">
+          <i className="bi bi-plus-lg"></i>
+        </Link>
+      )}
+
+    </div>
       <Link to="/" className="logo">Red Art Blog</Link>
 
 
       <nav>
         {username && (
           <>
-            <Link to="/create">Create new post</Link>
-            <button onClick={logout} style={{cursor: 'pointer'}}>Logout</button>
-            <Link className="container-profile" to="/"> 
+          <div className="navbar-user">           
+             <Link className="container-profile" to="/"> 
               <i className=" person bi bi-person-circle"></i>
-              <span className="profile-name">({name})</span>
+              <span className="profile-name">{name}</span>
             </Link>
+            <Link to="/"><button className="logout-button" onClick={logout}><i className="bi bi-box-arrow-right"></i>Logout</button></Link>
+          </div>
           </>
         )}
         {!username && (

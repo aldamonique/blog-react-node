@@ -36,11 +36,12 @@ header nav, .header-placeholder{
     font-size: 20px;
 }
 
-.navbar-non-user{
+.navbar-non-user, .navbar-user{
     display: flex;
-    gap: 10px;
+    gap: 20px;
 
 }
+
 .navbar-non-user button{
     padding: 10px 30px;
     border-width: 1.5px;
@@ -48,7 +49,14 @@ header nav, .header-placeholder{
     border-radius: 3px;
 }
 
-.login-button, .singup-button:hover{
+.navbar-user button{
+    padding: 10px 20px;
+    border-width: 1.5px;
+    border-style: solid;
+
+}
+
+.login-button, .singup-button:hover, .logout-button:hover{
     background-color: white;
     color: black;   
 }
@@ -57,16 +65,22 @@ header nav, .header-placeholder{
     font-size: 15px;
 }
 
-.singup-button, .login-button:hover{
+.singup-button, .login-button:hover, .logout-button{
     background-color: black;
     color: white;
     border-color: white;
 }
-
+.logout-button i{
+    font-size: 15px;
+    margin-right: 10px;
+}
 
 
 .container-profile{
     text-align: center;
+    align-items: center;
+    display: flex;
+    gap:10px
 }
 .person{
     font-size: 30px;
@@ -74,3 +88,5 @@ header nav, .header-placeholder{
 .profile-name{
     font-weight: 900;
 }
+
+

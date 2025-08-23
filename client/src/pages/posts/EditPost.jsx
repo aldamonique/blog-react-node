@@ -90,6 +90,7 @@ export default function EditPost() {
         type="file" 
         onChange={ev => setFiles(ev.target.files)} 
         disabled={loading}
+        accept=".png, .jpg, .jpeg, .webp"
       />
       <Editor onChange={setContent} value={content} />
       <button style={{ marginTop: '5px' }} disabled={loading}>
