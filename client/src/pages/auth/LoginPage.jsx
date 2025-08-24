@@ -60,7 +60,7 @@ export default function LoginPage() {
               <button disabled={loading}>
                 {loading ? "Logging in..." : "Login"}
               </button>
-              <span className="span-form">Don't have an anccount?&nbsp;<Link className="link-form" to="/register">Sing up now</Link></span>
+              <span className="span-form">Don't have an account?&nbsp;<Link className="link-form" to="/register">Sing up now</Link></span>
 
             </form>
       </AuthLayout>

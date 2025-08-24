@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import AuthLayout from "./AuthLayout.jsx";
+import { Link } from "react-router-dom";
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
@@ -64,6 +65,9 @@ export default function RegisterPage() {
       <button disabled={loading}>
         {loading ? 'Registering...' : 'Register'}
       </button>
+      
+      <span className="span-form">Already have an account?&nbsp;<Link className="link-form" to="/register">Sing up now</Link></span>
+
     </form>
   </AuthLayout>
   );

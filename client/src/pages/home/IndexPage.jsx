@@ -1,3 +1,4 @@
+import HeroSection from "../../components/header/navbar-aux";
 import Post from "../../components/posts/Post";
 import {useEffect, useState} from "react";
 
@@ -12,6 +13,7 @@ export default function IndexPage() {
   }, []);
   return (
     <>
+      <><HeroSection/></>
       {posts.length > 0 && posts.map(post => <Post key={post._id} {...post} />)
       }
     </>

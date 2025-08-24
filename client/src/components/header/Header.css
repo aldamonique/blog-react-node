@@ -4,21 +4,22 @@ header{
     align-items: center;
     margin-bottom: 50px;
     padding: 15px;
-    background-color: whitesmoke;
+    background-color: rgb(252, 251, 250);
     border-bottom: 1px solid #e2e2e2;
 
 
 }
-header a{
+header a, i{
     text-decoration:none;
     color: inherit;
+    cursor: pointer;
+
 }
 header a.logo{
 
     font-weight: bold;
     font-size: 1.5rem;
     color: rgb(0, 0, 0);
-    text-align: center;
 }
 header nav{
     display:flex;
@@ -26,14 +27,26 @@ header nav{
     justify-content: flex-end;
 
 }
-header nav, .header-placeholder{
+.header-left, .header-right{
     flex:1;
 }
 
-.header-placeholder i{
+.header-left i{
     margin-left: 10px;
     padding: 10px;
     font-size: 20px;
+}
+
+.header-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .navbar-non-user, .navbar-user{
@@ -42,23 +55,33 @@ header nav, .header-placeholder{
 
 }
 
+
 .navbar-non-user button{
-    padding: 10px 30px;
+    padding: 10px 20px;
     border-width: 1.5px;
     border-style: solid;
-    border-radius: 3px;
+    border-radius: 5px;
+    min-width: 12px;
+    white-space: nowrap;
+    text-decoration: none;
+
 }
 
 .navbar-user button{
     padding: 10px 20px;
     border-width: 1.5px;
     border-style: solid;
+    border-radius: 5px;
+
+    min-width: 12px;
+    white-space: nowrap;
 
 }
 
 .login-button, .singup-button:hover, .logout-button:hover{
     background-color: white;
     color: black;   
+
 }
 
 .login-button i{
@@ -90,3 +113,163 @@ header nav, .header-placeholder{
 }
 
 
+.sidebar {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 70%; 
+  background-color: #fff;
+  border-right: 1px solid #e2e2e2;
+  padding: 20px;
+  z-index: 1001; 
+
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out; 
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    color: #333;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden; 
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.close-menu-button {
+  background: none;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+}
+
+.sidebar-link {
+  font-size: 1.1rem;
+  color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-size: 12px;
+
+
+}
+.sidebar a  {
+text-decoration: none;
+font-size: 12px;
+}
+ 
+.sidebar-link:hover {
+  background-color: #f5f5f5;
+}
+
+.sidebar .navbar-non-user, .sidebar .navbar-user {
+    flex-direction: column;
+    align-items: stretch; 
+    width: 100%;
+}
+
+.hamburger-button {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 1002;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+
+  .hamburger-button {
+    display: block;
+  }
+
+  .desktop-icons, .header-right {
+    display: none;
+  }
+  header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  
+  }
+  header a.logo {
+    margin: 0 auto;
+    display: flex;
+    text-align: center;
+
+  }
+  .header-left {
+      justify-content: flex-start;
+      flex: 0.1;
+  }
+  .header-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .header-left, .header-right {
+    flex: 0 1 50px; 
+  }
+  .header-right .profile-name,
+  .header-right .navbar-non-user .singup-button {
+    display: none;
+  }
+
+  .header-right .navbar-user .logout-button {
+    display: none;
+  }
+  .container-profile i{
+    font-size: 1.5rem;
+  }
+
+  .logout-button{
+    color:#333;
+    font-size: small;
+    background:none;
+    display: flex;
+    align-items: baseline;
+  }
+  .header-right .login-button{
+position: relative;
+border: none;
+padding: 10px;
+    margin: 0;
+    top:2px;
+  }
+
+}
