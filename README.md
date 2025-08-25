@@ -1,6 +1,7 @@
-## Read Blog – Blog Application
+## The Art Blog – Blog Application
 
-Read Blog is a full-stack blog platform I designed and developed from scratch using the MERN Stack: MongoDB, Express.js, React.js, and Node.js. This project was driven not only by my interest in web development but also by my personal passion for literature. It is currently under active development.
+
+The Art Blog is a full-stack blog platform I designed and developed from scratch using the MERN Stack: MongoDB, Express.js, React.js, and Node.js. This project was driven not only by my interest in web development but also by my personal passion for literature. It is currently under active development.
 
 With this project, I strengthened my knowledge of:
 
