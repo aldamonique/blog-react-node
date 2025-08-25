@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
 
 html, body, #root {
   padding: 0;
   height: 100%;
+  font-family: 'Merriweather', serif;
 
 }
-main{
- margin-top: 50px;
 
+main{
+    padding-top: 120px;
 }
 body{
     color: #222;

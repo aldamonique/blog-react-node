@@ -48,7 +48,7 @@ export default function Header() {
       </div>
 
       <Link to="/" className="logo">
-        Red Art Blog
+        The Art Blog
       </Link>
 
       <div className="header-right">
@@ -56,7 +56,7 @@ export default function Header() {
             <>
               <div className="navbar-user">
                 <Link className="container-profile" to="/" onClick={closeMenu}>
-                  <i className=" person bi bi-person-circle"></i>
+                  <i className=" person bi bi-person-fill"></i>
                   <span className="profile-name">{name}</span>
                 </Link>
                 <Link to="/">
@@ -109,9 +109,9 @@ export default function Header() {
             (
                 <div className="navbar-non-user">
                     <Link to="/login" onClick={closeMenu}>
-                        <Link className="login-button">
-                            <i className="person bi bi-person" />&nbsp;&nbsp;Login
-                        </Link>
+                        <button className="login-button">
+                           <i className="person bi bi-person small" />&nbsp;&nbsp;Login
+                        </button>
                     </Link>
                     <Link to="/register" onClick={closeMenu}>
                         <button className="singup-button">Sing Up</button>

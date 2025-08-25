@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { format } from "date-fns";
 import { UserContext } from "../../context/UserContext";
+import "./Post.css";
+
 
 export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
@@ -39,15 +41,16 @@ export default function PostPage() {
   if (!postInfo) {
       return null; 
   }
-
+console.log('userInfo:', userInfo);
+console.log('postInfo:', postInfo);
   return (
-    <div className="post-page">
+    <div className="post-page"> 
       <h1>{postInfo.title}</h1>
       <time>{format(new Date(postInfo.createdAt), 'd MMM, yyyy HH:mm')}</time>
-      <div className="author">by @{postInfo.author.username}</div>
+      <div className="author">by @{postInfo.author.name}</div>
       
    
-      {userInfo && userInfo.id === postInfo.author._id && (
+      {userInfo && postInfo.author && userInfo.id === postInfo.author.id?.toString() && (
         <div className="edit-row">
           <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

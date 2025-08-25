@@ -3,8 +3,7 @@ import ClassicArt from '../../assets/art-classic.jpg';
 import './Header.css';
 
 function HeroSection() {
-  // Passamos a imagem importada para o CSS através de uma variável CSS inline.
-  // Isso combina a facilidade de import do React com o poder do CSS.
+
   const heroStyle = {
     '--hero-background-image': `url(${ClassicArt})`
   };
@@ -12,7 +11,7 @@ function HeroSection() {
   return (
     <section className="hero-section" style={heroStyle}>
       <div className="hero-content">
-        <h1>Red Art Blog</h1>
+        <h3>The Art Blog</h3>
         <p>Um espaço para pensar, escrever e ler sobre arte.</p>
       </div>
     </section>

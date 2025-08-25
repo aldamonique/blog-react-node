@@ -9,7 +9,7 @@ export function UserContextProvider({children}) {
     const fetchProfile = async () => {
 
     try {
-      const response = await fetch('http;//localhost:4000/auth/profile', {
+      const response = await fetch('http://localhost:4000/auth/profile', {
         credentials:'include',
       });
 

@@ -2,6 +2,7 @@ import 'react-quill/dist/quill.snow.css';
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Editor from "../../components/editor/Editor";
+import "./Post.css";
 
 export default function CreatePost() {
   const [title, setTitle] = useState('');

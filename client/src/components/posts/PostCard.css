@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
+.post {
+  font-family: 'Merriweather', serif;
+}
 .post-card {
   background: #fff;
   border-radius: 12px;
@@ -8,34 +13,3 @@
   flex-direction: column;
 }
 
-.post-card:hover {
-  transform: translateY(-5px);
-}
-
-.post-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.post-card .post-content {
-  padding: 15px;
-}
-
-.post-card .title h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  color: #222;
-}
-
-.post-card .meta {
-  font-size: 0.9rem;
-  color: #777;
-  margin: 5px 0 10px;
-}
-
-.post-card .summary {
-  color: #444;
-  font-size: 1rem;
-  line-height: 1.4;
-}

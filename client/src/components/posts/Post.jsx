@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
-
+import './PostCard.css';
 export default function Post({ _id, title, summary, cover, createdAt, author }) {
 
   return (
@@ -15,7 +15,7 @@ export default function Post({ _id, title, summary, cover, createdAt, author }) 
           <h2>{title}</h2>
         </Link>
         <p className="info">
-          <span className="author">{author.username}</span>
+          <span className="author">{author.name}</span>
           
           <time>{format(new Date(createdAt), 'd MMM, yyyy')}</time>
         </p>
