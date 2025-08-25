@@ -213,6 +213,10 @@ font-size: 12px;
   color: #333;
 }
 
+.hero-section{
+  padding: 40px;
+}
+
 @media (max-width: 768px) {
 
   .hamburger-button {
