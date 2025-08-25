@@ -79,8 +79,8 @@ exports.updatePost = async (req, res, next) =>{
 exports.getPosts = async (req, res, next) =>{
     try{
         const posts = await Post.find()
-        .populate('author', ['username'])
-        .sort({createdAt:-1}) //order by desc
+        .populate('author', ['username',  'name'])
+        .sort({createdAt:-1}) 
         .limit(20);
         return res.json(posts);
 
