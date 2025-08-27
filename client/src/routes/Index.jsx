@@ -10,7 +10,7 @@ import RestrictedRoute from "./RestrictedRoute.jsx";
 
 import ProtectedRoute from './ProtectedRoute.jsx';
 import NotFound from "../pages/not-found-page/NotFoundPage.jsx";
-
+import SearchPage from "../pages/search/SearchPage.jsx"; 
 function AppRoutes (){
     return(
         <Routes>
@@ -22,6 +22,8 @@ function AppRoutes (){
 
         <Route element={<Layout />}>
           <Route index element={<IndexPage />} />
+          <Route path="/search" element={<SearchPage />} />
+
           <Route path="/post/:id" element={<PostPage />}  />
           
           <Route element={<ProtectedRoute/>}>

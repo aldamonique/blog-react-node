@@ -15,12 +15,18 @@ export default function Post({ _id, title, summary, cover, createdAt, author }) 
           <h2>{title}</h2>
         </Link>
         <p className="info">
-          <span className="author">{author.name}</span>
+          <span className="author">By {author.name}</span>
           
           <time>{format(new Date(createdAt), 'd MMM, yyyy')}</time>
         </p>
+        <div className="summary-div">
         <p className="summary">{summary}</p>
-      </div>
+        <Link to={`/post/${_id}`}>
+        <p className="read-more">Read more</p>
+        </Link>    
+        </div>
+
+    </div>
     </div>
   );
 }

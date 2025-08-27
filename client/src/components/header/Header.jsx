@@ -1,12 +1,19 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
+import { FaSearch, FaBell, FaPlus } from 'react-icons/fa'
 import "./Header.css";
+import { SearchContext } from "../../context/SearchContext";
+
+
 
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
   const navigate = useNavigate();
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+
   const [menuOpen, setMenuOpen] = useState(false);
+const { query, setQuery, setFilteredPosts } = useContext(SearchContext);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -25,10 +32,20 @@ export default function Header() {
 
   const username = userInfo?.username;
   const name = userInfo?.name;
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      navigate(`/search?q=${query}`);
+      setIsSearchVisible(false); 
+    }
+  };
   return (
 
-        <><div 
+        <>
+        <div 
         className={`menu-overlay ${menuOpen ? "open" : ""}`} 
         onClick={closeMenu}
       ></div>
@@ -39,17 +56,40 @@ export default function Header() {
         </button>
         <div className="desktop-icons">
 
-        <i className="bi bi-search" title="Search for posts"></i>
-        <i className="bi bi-bell-fill" title=""></i>
+        <div className="search-container">
+          <i
+            className="bi bi-search"
+            title="Search for posts"
+            onClick={() => setIsSearchVisible((prev) => !prev)}
+          ></i>
+
+          {isSearchVisible && (
+            <form className="search-form" onSubmit={handleSearchSubmit}>
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search..."
+                className="search-input"
+                autoFocus
+              />
+              <button onClick={handleSearchSubmit}>Search</button>
+            </form>
+          )}
+        </div>       
+         <i className="bi bi-bell-fill" title=""></i>
         <Link to="/create" className="create-post-icon-desktop">
           <i className="bi bi-plus-lg" title="Add new post"></i>
         </Link>
         </div>
       </div>
 
+
+      {!isHome &&       
       <Link to="/" className="logo">
         The Art Blog
-      </Link>
+      </Link>}
+
 
       <div className="header-right">
           {username ?(

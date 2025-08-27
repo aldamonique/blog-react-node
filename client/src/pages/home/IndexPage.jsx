@@ -15,7 +15,8 @@ export default function IndexPage() {
 
   const latestPosts = posts.slice(0,5);
   const featuredPosts = posts.slice(1, 3);
-  const otherPosts = posts.slice(6);
+  const otherPosts = posts.slice(1,6).reverse();
+  const cardGridPosts = posts; 
 
   return (
     <><div className="lines">
@@ -34,7 +35,14 @@ export default function IndexPage() {
       {otherPosts.map(post => (
         <Post key={post._id} {...post} />
       ))}
-    </section>
+    </section >
+
+    <section className="grid-card">
+      {cardGridPosts.map(post => (
+      <Post key={post._id} {...post}/> 
+    ))}
+    </section> 
+    
   </div>
 
   <aside className="recent">
@@ -47,6 +55,10 @@ export default function IndexPage() {
       )}
     </ul>
   </aside>
+    
+  
+
+
 </div>
 </>
   );
