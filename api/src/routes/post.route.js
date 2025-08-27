@@ -10,5 +10,8 @@ router.post('/post', authMiddleware, upload.single('file'), postController.creat
 router.put('/post/:id', authMiddleware, uploadMiddleware.single('file'), postController.updatePost);
 router.get('/post', postController.getPosts);
 router.get('/post/:id', postController.getPostsById);
+router.get('/my-posts', authMiddleware, postController.getMyPosts);
+router.delete('/:id', authMiddleware, postController.deletePost);
+
 
 module.exports = router;

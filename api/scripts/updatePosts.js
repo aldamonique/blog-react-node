@@ -23,20 +23,14 @@ async function setDefaultImage() {
       $set: { cover: DEFAULT_IMAGE_PATH }
     };
 
-    console.log('Procurando e atualizando posts sem imagem...');
     const result = await Post.updateMany(filter, update);
 
-    console.log('-----------------------------------------');
-    console.log('Operação concluída!');
-    console.log(`${result.matchedCount} posts foram encontrados com a condição.`);
-    console.log(`${result.modifiedCount} posts foram atualizados com a imagem padrão.`);
-    console.log('-----------------------------------------');
 
   } catch (error) {
-    console.error('Ocorreu um erro durante a operação:', error);
+    console.error( error);
   } finally {
     await mongoose.connection.close();
-    console.log('Conexão com o MongoDB fechada.');
+    console.log('MongoDB connection is closed');
   }
 }
 

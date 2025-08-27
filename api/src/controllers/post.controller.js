@@ -32,49 +32,45 @@ exports.createPost = async (req, res, next) => {
     next(err);
   }
 };
-exports.updatePost = async (req, res, next) =>{
-    try{
+exports.updatePost = async (req, res, next) => {
+    try {
         let newCoverPath = null;
-
-        if(req.file){
-            const{originalname, path} = req.file;
+        if (req.file) {
+            const { originalname, path } = req.file;
             const ext = originalname.split('.').pop();
             newCoverPath = `${path}.${ext}`;
             fs.renameSync(path, newCoverPath);
         }
 
-        const {token} = req.cookies;
-        if (!token) return res.status(401).json({error:'Unauthorized'});
+        const { id: postId } = req.params;
+        const { title, summary, content } = req.body;
+        const post = await Post.findById(postId);
 
-        jwt.verify(token, process.env.JWT_SECRET, {}, async (err,info) =>{
-            if (err) return res.status(401).json({error: 'Invalid Token'});
+        if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
 
-            const {id} = req.params;
-            const {title, summary, content} = req.body;
+        const isAuthor = post.author.toString() === req.user.id;
+        if (!isAuthor) {
+            return res.status(403).json({ error: 'Not authorized to edit this post' });
+        }
+        
+        post.title = title;
+        post.summary = summary;
+        post.content = content;
+        
+         if (newCoverPath) {
+            post.cover = newCoverPath;
+        }
+        
+        await post.save();
+        await post.populate('author', 'username name');
+        return res.json(post);
 
-            const post = await Post.findById(id);
-            if(!post) return res.status(404).json({error: 'Post not found'});
-            const isAuthor = post.author.toString() === info.id;
-
-            if(!isAuthor) return res.status(403).json({error: 'Not authorized to edit this post'});
-
-            if (req.body.title) post.title = title;
-            if (req.body.summary) post.summary = summary;
-            if (req.body.content) post.content = content;
-            if (req.body.cover) post.cover = newCoverPath ? newCoverPath : post.cover;
-            
-            await post.save();
-            await post.populate('author', 'username name');
-
-            return res.json(post);
-
-        });
-
-    }catch(err){
+    } catch(err) {
         next(err);
     }
 };
-
 
 exports.getPosts = async (req, res, next) =>{
     try{
@@ -99,4 +95,42 @@ exports.getPostsById = async (req, res, next) =>{
     }catch(err){
         next(err);
     }
+};
+
+exports.deletePost = async (req, res, next) => {
+    try {
+        const postId = req.params.id;
+        const userId = req.user.id;
+
+        const post = await Post.findById(postId);
+
+        if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+        if (post.author.toString() !== userId) {
+            return res.status(403).json({ error: 'Forbidden: You are not the author of this post' });
+        }
+
+        await Post.findByIdAndDelete(postId);
+
+        res.status(200).json({ message: 'Post deleted successfully' });
+
+    } catch (err) {
+        next(err);
+    }
+};
+
+exports.getMyPosts = async (req, res, next) => {
+  try {
+    const userId = req.user.id; 
+
+    const posts = await Post.find({ author: userId })
+      .populate('author', ['username', 'name'])
+      .sort({ createdAt: -1 });
+
+    return res.json(posts);
+  } catch(err){
+    next(err);
+  }
 };
