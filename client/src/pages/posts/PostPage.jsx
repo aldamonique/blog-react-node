@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { UserContext } from "../../context/UserContext";
 import "./Post.css";
-
 
 export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
@@ -11,14 +10,14 @@ export default function PostPage() {
   const [error, setError] = useState(null);
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
+    const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
         const response = await fetch(`http://localhost:4000/posts/post/${id}`);
-        if (!response.ok) {
-          throw new Error('Post not found.');
-        }
+        if (!response.ok) throw new Error('Post not found.');
         const postData = await response.json();
         setPostInfo(postData);
       } catch (err) {
@@ -28,42 +27,72 @@ export default function PostPage() {
       }
     };
     fetchPost();
-  }, [id]); 
+  }, [id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
+    async function deletePost() {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this post? This action cannot be undone."
+    );
+
+    if (confirmDelete) {
+      try {
+        const response = await fetch(`http://localhost:4000/posts/${id}`, {
+          method: "DELETE",
+          credentials: "include",
+        });
+        if (!response.ok) throw new Error("Failed to delete the post.");
+        alert("Post deleted successfully!");
+        navigate("/");
+      } catch (err) {
+        alert(err.message);
+      }
+    }
   }
 
-  if (error) {
-    return <div className="error">{error}</div>;
-  }
-  
-  if (!postInfo) {
-      return null; 
-  }
-console.log('userInfo:', userInfo);
-console.log('postInfo:', postInfo);
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">{error}</div>;
+  if (!postInfo) return null;
+
   return (
-    <div className="post-page"> 
-      <h1>{postInfo.title}</h1>
-      <time>{format(new Date(postInfo.createdAt), 'd MMM, yyyy HH:mm')}</time>
-      <div className="author">by @{postInfo.author.name}</div>
-      
-   
-      {userInfo && postInfo.author && userInfo.id === postInfo.author.id?.toString() && (
-        <div className="edit-row">
-          <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-            </svg>
-            Edit this post
-          </Link>
-        </div>
-      )}
-      <div className="image">
-        <img src={`http://localhost:4000/${postInfo.cover}`} alt={postInfo.title} />
-      </div>
-      <div className="content" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+<div className="post-page-container">
+  <h1 className="post-title">{postInfo.title}</h1>
+
+  {postInfo.cover && (
+    <div className="post-image">
+      <img src={`http://localhost:4000/${postInfo.cover}`} alt={postInfo.title} />
     </div>
+  )}
+
+  {postInfo.summary && (
+    <div className="post-summary">
+      {postInfo.summary}
+    </div>
+  )}
+
+  <div
+    className="post-content"
+    dangerouslySetInnerHTML={{ __html: postInfo.content }}
+  />
+
+  <div className="post-footer">
+    <div className="post-meta">
+      <time>{format(new Date(postInfo.createdAt), 'd MMM, yyyy HH:mm')}</time>
+      <span className="author">by @{postInfo.author._name}</span>
+      {userInfo && postInfo.author && userInfo.id === postInfo.author.id?.toString() && (
+
+            <div className="action-buttons">
+              <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
+                Edit
+              </Link>
+              <button onClick={deletePost} className="delete-btn">
+                Delete
+              </button>
+            </div>       
+      )}
+    </div>
+  </div>
+</div>
+
+
   );
 }

@@ -8,68 +8,88 @@ export default function CreatePost() {
   const [title, setTitle] = useState('');
   const [summary, setSummary] = useState('');
   const [content, setContent] = useState('');
-  const [files, setFiles] = useState('');
+  const [files, setFiles] = useState(null);
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  async function createNewPost(ev) {
-    ev.preventDefault();
+  async function handleCreatePost(event) {
+    event.preventDefault();
     setLoading(true);
     setError('');
 
-    const data = new FormData();
-    data.set('title', title);
-    data.set('summary', summary);
-    data.set('content', content);
+    const formData = new FormData();
+    formData.set('title', title);
+    formData.set('summary', summary);
+    formData.set('content', content);
     if (files?.[0]) {
-      data.set('file', files[0]);
+      formData.set('file', files[0]);
     }
+if (!title.trim() || !summary.trim()) {
+  setError('Please fill in all required fields.');
+  return;
+}
 
-    const response = await fetch('http://localhost:4000/posts/post', {
-      method: 'POST',
-      body: data,
-      credentials: 'include',
-    });
-    
-    if (response.ok) {
-      setRedirect(true);
-    } else {
-      const errorData = await response.json();
-      setError(errorData.error || 'Failed to create post.');
+    try {
+      const response = await fetch('http://localhost:4000/posts/post', {
+        method: 'POST',
+        body: formData,
+        credentials: 'include',
+      });
+
+      if (response.ok) {
+        setRedirect(true);
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error || 'Failed to create post. Please try again.');
+      }
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   if (redirect) {
-    return <Navigate to={'/'} />;
+    return <Navigate to="/" />;
   }
 
   return (
-    <form onSubmit={createNewPost}>
+    <form className="create-post-form" onSubmit={handleCreatePost}>
       {error && <p className="error">{error}</p>}
-      <input 
-        type="text" 
-        placeholder={'Title'}
-        value={title}
-        onChange={ev => setTitle(ev.target.value)}
-        disabled={loading}
-      />
-      <input 
+
+      <input
         type="text"
-        placeholder={'Summary'}
+        placeholder="Post Title"
+        value={title}
+        onChange={e => setTitle(e.target.value)}
+        disabled={loading}
+        className="form-input"
+        required
+      />
+
+      <input
+        type="text"
+        placeholder="Post Summary"
         value={summary}
-        onChange={ev => setSummary(ev.target.value)}
+        onChange={e => setSummary(e.target.value)}
         disabled={loading}
+        className="form-input"
+        required
       />
-      <input 
+
+      <input
         type="file"
-        onChange={ev => setFiles(ev.target.files)}
+        onChange={e => setFiles(e.target.files)}
         disabled={loading}
+        className="form-input file-input"
+        accept=".png,.jpg,.jpeg,.webp"
       />
+
       <Editor value={content} onChange={setContent} />
-      <button style={{ marginTop: '5px' }} disabled={loading}>
-        {loading ? 'Creating...' : 'Create post'}
+
+      <button className="submit-btn" disabled={loading}>
+        {loading ? 'Creating Post...' : 'Create Post'}
       </button>
     </form>
   );

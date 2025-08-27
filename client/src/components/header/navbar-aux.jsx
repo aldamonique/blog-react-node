@@ -9,9 +9,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 function HeroSection() {
 
-  const heroStyle = {
-    '--hero-background-image': `url(${ClassicArt})`
-  };
+
   const now = new Date();
   const formattedDay = format(now, "EEEE", { locale: enUS });
   const formattedMonth = format(now, " MMMM dd, yyyy", { locale: enUS });
@@ -21,7 +19,7 @@ function HeroSection() {
   return (
     <>
       {isHome && 
-          <section className="hero-section" style={heroStyle}>
+          <section className="hero-section">
 <img src={aux} alt='Blog Art'></img>
       <div className="hero-content">
         <p>What's new today?</p>

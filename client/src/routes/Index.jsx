@@ -7,10 +7,14 @@ import CreatePost from "../pages/posts/CreatePost";
 import PostPage from "../pages/posts/PostPage";
 import EditPost from "../pages/posts/EditPost.jsx";
 import RestrictedRoute from "./RestrictedRoute.jsx";
-
+import MyPostsPage from "../pages/posts/MyPostsPage.jsx";
 import ProtectedRoute from './ProtectedRoute.jsx';
 import NotFound from "../pages/not-found-page/NotFoundPage.jsx";
 import SearchPage from "../pages/search/SearchPage.jsx"; 
+
+import ForgotPasswordPage from "../pages/auth/ForgotPasswordPage.jsx";
+import ResetPasswordPage from "../pages/auth/ResetPasswordPage.jsx";
+
 function AppRoutes (){
     return(
         <Routes>
@@ -18,6 +22,8 @@ function AppRoutes (){
         <Route element={<RestrictedRoute/>}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
         </Route>
 
         <Route element={<Layout />}>
@@ -27,6 +33,7 @@ function AppRoutes (){
           <Route path="/post/:id" element={<PostPage />}  />
           
           <Route element={<ProtectedRoute/>}>
+            <Route path="/my-posts" element={<MyPostsPage />} />
             <Route path="/create" element={<CreatePost />} />
             <Route path="/edit/:id" element={<EditPost />} />
           </Route>

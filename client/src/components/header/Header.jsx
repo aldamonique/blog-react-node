@@ -77,7 +77,7 @@ const { query, setQuery, setFilteredPosts } = useContext(SearchContext);
             </form>
           )}
         </div>       
-         <i className="bi bi-bell-fill" title=""></i>
+         <Link to="/my-posts"><i className="bi  bi-file-earmark-fill" title="My Posts"></i></Link>
         <Link to="/create" className="create-post-icon-desktop">
           <i className="bi bi-plus-lg" title="Add new post"></i>
         </Link>
@@ -86,10 +86,14 @@ const { query, setQuery, setFilteredPosts } = useContext(SearchContext);
 
 
       {!isHome &&       
-      <Link to="/" className="logo">
+      <Link to="/" className="logo logo-small">
         The Art Blog
       </Link>}
 
+   
+      <Link to="/" className="logo-mobile">
+        The Art Blog
+      </Link>
 
       <div className="header-right">
           {username ?(

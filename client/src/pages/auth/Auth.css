@@ -126,11 +126,28 @@ button .google-login-btn:hover {
   display: flex;  
   justify-content:center;
 }
+.span-form a{
+  text-decoration: none;
+
+}
+
 
 .link-form{
   text-decoration: none;
 }      
+.back-to-login {
+  margin-top: 15px;
+  text-align: center;
+}
 
+.back-to-login a {
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.back-to-login a:hover {
+  text-decoration: underline;
+}
 
 form .error{
   color: #d93025;

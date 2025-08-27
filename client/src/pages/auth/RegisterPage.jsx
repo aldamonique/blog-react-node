@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export default function RegisterPage() {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,7 @@ export default function RegisterPage() {
 
     const response = await fetch('http://localhost:4000/auth/register', {
       method: 'POST',
-      body: JSON.stringify({ name, username, password }),
+      body: JSON.stringify({ name, username, email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
     
@@ -27,7 +28,11 @@ export default function RegisterPage() {
     if (response.ok) {
       setRedirect(true);
     } else {
-      setError(data.error || 'Registration failed. Please try again.');
+      if (data.errors) {
+        setError(data.errors[0].msg);
+      } else {
+        setError(data.error || 'Registration failed. Please try again.');
+      }
     }
     setLoading(false);
   }
@@ -40,7 +45,7 @@ export default function RegisterPage() {
     };
 
   return (
-  <AuthLayout title="Sing up Blog Art" subtitle="Think. Write. Read">
+  <AuthLayout title="Sing up The Art Blog" subtitle="Think. Write. Read">
     
     <form onSubmit={register}>
       {error && <p className="error">{error}</p>}
@@ -58,6 +63,13 @@ export default function RegisterPage() {
         onChange={ev => setUsername(ev.target.value)}
         disabled={loading}
       />
+            <input 
+          type="email"
+          placeholder="email"
+          value={email}
+          onChange={ev => setEmail(ev.target.value)}
+          disabled={loading}
+        />
       <input 
         type="password"
         placeholder="password"
@@ -70,7 +82,7 @@ export default function RegisterPage() {
       </button>
       
       <span className="span-form">Already have an account?&nbsp;<Link className="link-form" to="/login">Login now</Link></span>
-<div className="d-flex align-items-center my-3">
+{/*<div className="d-flex align-items-center my-3">
     <hr className="flex-grow-1 border-secondary" style={{ height: "1px" }} />
     <span className="mx-2 text-muted">OR</span>
     <hr className="flex-grow-1 border-secondary" style={{ height: "1px" }} />
@@ -83,7 +95,7 @@ export default function RegisterPage() {
         <path d="M9 3.57955C10.3218 3.57955 11.5077 4.02455 12.4405 4.92545L15.0218 2.34409C13.4673 0.891818 11.43 0 9 0C5.48182 0 2.43818 2.01273 0.957275 4.95818L3.96409 7.29C4.67182 5.16273 6.66 3.57955 9 3.57955Z" fill="#EA4335"/>
       </svg> &nbsp;
         Continue with Google
-      </button>            
+      </button>  */}          
     </form>
   </AuthLayout>
   );

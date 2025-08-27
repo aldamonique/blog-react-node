@@ -292,11 +292,21 @@ justify-content: center;
   background-color: black;
 }
 
+  .logo-mobile{
+    display: none;
+  }
 @media (max-width: 768px) {
+
 
   .hamburger-button {
     display: block;
   }
+
+  .hero-section img {
+  display: block;
+  max-width: 80%; 
+  margin: 0 auto 20px auto;
+}
 
   .desktop-icons, .header-right {
     display: none;
@@ -314,6 +324,7 @@ justify-content: center;
     text-align: center;
 
   }
+
   .header-left {
       justify-content: flex-start;
       flex: 0.1;
@@ -360,5 +371,16 @@ justify-content: center;
     margin: 0;
     top:2px;
   }
+
+  
+  .logo-mobile{
+
+    margin: 0 auto;
+    display: flex;
+    text-align: center;
+  }
+  .logo.logo-small{
+  display: none;
+}
 
 }

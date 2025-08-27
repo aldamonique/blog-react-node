@@ -1,5 +1,5 @@
 
-.grid-card{
+.grid-card-search{
   display: flex;
   flex-direction: column;
     gap: 20px;
@@ -12,31 +12,31 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-.grid-card .post {
+.grid-card-search .post {
   display: flex;
   flex-direction: column; 
   border: none; 
   padding: 0;
 }
-.grid-card   img{
+.grid-card-search   img{
   width: 200px;
   height: 150px;
   border-radius: 5px;
   object-fit: cover;
 }
-.grid-card  .texts {
+.grid-card-search  .texts {
   padding: 15px 5px; 
 }
-.grid-card h2 {
+.grid-card-search h2 {
   font-size: 1.5rem; 
   margin: 0 0 10px 0;
 }
 
-.grid-card .summary{
+.grid-card-search .summary{
   font-size: 0.9rem;
 }
 
-.grid-card .summary-div{
+.grid-card-search .summary-div{
   align-items: flex-start; 
   padding-top: 10px;
 
