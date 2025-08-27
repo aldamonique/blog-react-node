@@ -29,7 +29,7 @@ export default function SearchPage() {
   }, [query, posts]);
 
   return (
-    <div className="grid-card">
+    <div className="grid-card-search">
       <h2>Results for: "{query}"</h2>
       <div className="card-search">
       {filteredPosts.length > 0 ? (
