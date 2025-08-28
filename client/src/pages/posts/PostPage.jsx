@@ -77,7 +77,7 @@ export default function PostPage() {
   <div className="post-footer">
     <div className="post-meta">
       <time>{format(new Date(postInfo.createdAt), 'd MMM, yyyy HH:mm')}</time>
-      <span className="author">by @{postInfo.author._name}</span>
+      <span className="author"> {postInfo.author._name}</span>
       {userInfo && postInfo.author && userInfo.id === postInfo.author.id?.toString() && (
 
             <div className="action-buttons">
