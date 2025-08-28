@@ -3,34 +3,33 @@ const Post = require('../models/post.model');
 const { error } = require('console');
 const jwt = require('jsonwebtoken');
 
-
 exports.createPost = async (req, res, next) => {
-  try {
-    let coverPath = null;
-    if (req.file) {
-      const { originalname, path } = req.file;
-      const ext = originalname.split('.').pop();
-      coverPath = `${path}.${ext}`;
-      fs.renameSync(path, coverPath);
+    try {
+        let coverPath = null;
+        if (req.file) {
+            const { originalname, path } = req.file;
+            const ext = originalname.split('.').pop();
+            coverPath = `${path}.${ext}`;
+            fs.renameSync(path, coverPath);
+        }
+
+        const { id: authorId } = req.user;
+        const { title, summary, content } = req.body;
+
+        let post = await Post.create({
+            title,
+            summary,
+            content,
+            cover: coverPath,
+            author: authorId,
+        });
+
+        post = await post.populate('author', 'name username'); 
+
+        return res.status(201).json(post);
+    } catch (err) {
+        next(err);
     }
-
-
-    const { id: authorId } = req.user;
-    const { title, summary, content } = req.body;
-
-    const post = await Post.create({
-      title,
-      summary,
-      content,
-      cover: coverPath,
-      author: authorId, 
-    });
-
-    return res.status(201).json(post);
-
-  } catch (err) {
-    next(err);
-  }
 };
 exports.updatePost = async (req, res, next) => {
     try {
@@ -89,7 +88,7 @@ exports.getPostsById = async (req, res, next) =>{
     try{
         const {id} = req.params;
         const post = await Post.findById(id)
-        .populate('author', ['username']);
+        .populate('author', 'username name');
         if(!post) return res.status(404).json({error:'Post not found'});
         return res.json(post);
     }catch(err){

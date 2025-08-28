@@ -228,6 +228,9 @@ font-size: 12px;
   padding-bottom: 10px;
   padding: 0 25px;
 justify-content: center;
+  border-bottom: 1px solid rgb(185, 185, 185);
+  
+
 }
 .hero-section img {
   display: block;
@@ -238,6 +241,7 @@ justify-content: center;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 20px;
 }
 
 .hero-content p {
@@ -246,6 +250,15 @@ justify-content: center;
   color: #444;
 
 }
+
+.hero-text-below{
+  padding-top: 20px;
+  font-size: 0.8rem;
+  padding-left: 25px;
+
+}
+
+
 .date{
   font-size: 12px;
 }
@@ -301,6 +314,7 @@ justify-content: center;
   .hamburger-button {
     display: block;
   }
+
 
   .hero-section img {
   display: block;
@@ -384,3 +398,4 @@ justify-content: center;
 }
 
 }
+

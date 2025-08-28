@@ -17,22 +17,25 @@ function HeroSection() {
   const isHome = location.pathname === '/';
 
   return (
+ <>
+  {isHome && (
     <>
-      {isHome && 
-          <section className="hero-section">
-<img src={aux} alt='Blog Art'></img>
-      <div className="hero-content">
-        <p>What's new today?</p>
+      <section className="hero-section">
+        <img src={aux} alt='Blog Art' />
+        <div className="hero-content">
+          <p>What's new today?</p>
+          <div className="date">
+            <span>{formattedDay}</span> 
+            <span>{formattedMonth}</span> 
+          </div>
+        </div>
+      </section>
 
 
+    </>
+  )}
+</>
 
-    <div className="date">
-     <span>{formattedDay}</span> 
-     <span>{formattedMonth}</span> 
-    </div>      </div>
-    </section>
-      }
-      </>
   )
 }
 

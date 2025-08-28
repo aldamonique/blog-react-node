@@ -14,21 +14,25 @@ export default function IndexPage() {
 
 
   const latestPosts = posts.slice(0,5);
-  const featuredPosts = posts.slice(1, 3);
-  const otherPosts = posts.slice(1,6).reverse();
-  const cardGridPosts = posts; 
+  const featuredPosts = posts.slice(5, 7);
+  const otherPosts = posts.slice(1,8);
+  const cardGridPosts = posts.slice(6).reverse(); 
 
   return (
     <><div className="lines">
-     <hr className="line" style={{ height: "1px", color:'black'}} />
     </div>
   <div className="home-layout">
 
   <div className="main-content">
-    <section className="featured">
+    <section className="featured-content">
+      <div className="hero-text-below">
+        <h2 className="tittle">This Week’s Highlights</h2>
+        <p>The Blog Art is your space to explore and share creativity, from music and cinema to digital and classic art.</p>
+      </div>
+      <div className="featured">
       {featuredPosts.map(post => 
         <Post key={post._id} {...post} />
-      )}
+      )}</div>
     </section>
 
     <section className="middle">
