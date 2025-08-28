@@ -62,7 +62,6 @@ exports.forgotPassword = async (req, res, next) => {
         const user = await User.findOne({ email });
 
         if (!user) {
-            // Por segurança, não revele que o e-mail não foi encontrado.
             return res.status(200).json({ message: 'If an account with that email exists, a reset link has been sent.' });
         }
 
@@ -85,7 +84,6 @@ exports.forgotPassword = async (req, res, next) => {
         res.status(200).json({ message: 'Password reset link sent to your email' });
 
     } catch (err) {
-        // Se ocorrer um erro, limpamos o token para evitar inconsistências
         if (req.user) {
             req.user.resetPasswordToken = undefined;
             req.user.resetPasswordExpires = undefined;
