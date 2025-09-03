@@ -1,11 +1,12 @@
-## The Blog Art
+## The Art Blog  
 
-#### The Blog Art is a web application focused on posts about arts, cinema, music, and cultural topics. Users can create, edit, delete, and search for posts. The app features full authentication and a fully responsive interface for desktop and mobile devices.
-
-
+#### The Art Blog  is a web application focused on posts about arts, cinema, music, and cultural topics. Users can create, edit, delete, and search for posts. The app features full authentication and a fully responsive interface for desktop and mobile devices.
 
 
-https://github.com/user-attachments/assets/9a160d9f-b6ac-4664-973c-c1d0af5a8dea
+
+
+https://github.com/user-attachments/assets/d48b6e3d-ecc3-4fde-9e94-e3148899b40b
+
 
 
 
@@ -58,7 +59,7 @@ https://github.com/user-attachments/assets/9a160d9f-b6ac-4664-973c-c1d0af5a8dea
 
 ### UI/UX
 
-- The design of The Blog Art was inspired by my studies in UX/UI. The goal was to create a minimalistic layout reminiscent of a newspaper, highlighting images as the main focus of each post.
+- The design of The Art Blog  was inspired by my studies in UX/UI. The goal was to create a minimalistic layout reminiscent of a newspaper, highlighting images as the main focus of each post.
 
 
 #### Image Credits: 
