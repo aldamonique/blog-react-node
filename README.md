@@ -2,6 +2,14 @@
 
 #### The Blog Art is a web application focused on posts about arts, cinema, music, and cultural topics. Users can create, edit, delete, and search for posts. The app features full authentication and a fully responsive interface for desktop and mobile devices.
 
+
+
+
+https://github.com/user-attachments/assets/9a160d9f-b6ac-4664-973c-c1d0af5a8dea
+
+
+
+
 ### Features
 
 - Create, edit, and delete posts
